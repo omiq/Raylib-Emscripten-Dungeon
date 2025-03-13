@@ -1,0 +1,31 @@
+# Build artifacts
+*.o
+*.a
+*.so
+*.dll
+*.dylib
+*.exe
+bin/
+temp/
+build/
+
+# Web build
+web/*.wasm
+web/*.js
+web_debug/
+
+# System files
+.DS_Store
+.vscode/
+*~
+*.swp
+*.swo
+
+# IDE files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+.idea/
+*.sublime-workspace 
