@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raylib Dungeon</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .game-container {
+            position: relative;
+            margin: 0 auto;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #333;
+        }
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+    </div>
+    
+    <div class="controls">
+        <p>Use WASD keys to move, collect treasures, and avoid monsters!</p>
+    </div>
+    
+    <div class="footer">
+        <p>Raylib Dungeon - A retro dungeon crawler</p>
+    </div>
+    
+    <script>
+        var Module = {
+            canvas: (function() { return document.getElementById('canvas'); })(),
+            onRuntimeInitialized: function() {
+                console.log('WASM runtime initialized');
+            }
+        };
+    </script>
+    {{{ SCRIPT }}}
+</body>
+</html>

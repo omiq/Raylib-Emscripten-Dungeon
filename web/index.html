@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raylib Dungeon</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .game-container {
+            position: relative;
+            margin: 0 auto;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #333;
+        }
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+        #status {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 5px;
+            z-index: 100;
+        }
+        #error {
+            position: absolute;
+            top: 40px;
+            left: 10px;
+            color: #f00;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 5px;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div id="status">Loading...</div>
+    <div id="error"></div>
+    
+    <div class="game-container">
+        <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+    </div>
+    
+    <div class="controls">
+        <p>Use WASD keys to move, collect treasures, and avoid monsters!</p>
+    </div>
+    
+    <div class="footer">
+        <p>Raylib Dungeon - A retro dungeon crawler</p>
+    </div>
+    
+    <script>
+        var Module = {
+            canvas: (function() { return document.getElementById('canvas'); })(),
+            onRuntimeInitialized: function() {
+                console.log('WASM runtime initialized');
+                document.getElementById('status').innerHTML = 'Running...';
+            },
+            print: function(text) {
+                console.log(text);
+                document.getElementById('status').innerHTML = text;
+            },
+            printErr: function(text) {
+                console.error(text);
+                document.getElementById('error').innerHTML += text + '<br>';
+            },
+            setStatus: function(text) {
+                console.log(text);
+                document.getElementById('status').innerHTML = text;
+            }
+        };
+        
+        // Add error handling
+        window.onerror = function(message, source, lineno, colno, error) {
+            console.error('Error:', message, source, lineno, colno, error);
+            document.getElementById('error').innerHTML += 'Error: ' + message + '<br>';
+        };
+    </script>
+    <script async type="text/javascript" src="index.js"></script>
+</body>
+</html>
+
+
